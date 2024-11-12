@@ -74,25 +74,27 @@
 
             <form action="{{ route('usuario_area_rol_index') }}" method="GET" class="d-flex align-items-center">
                 {{ csrf_field() }}
-                
+
                 <div class="form-floating me-2">
-                    <input type="text" class="form-control" name="buscar" value="{{ old('buscar') }}" id="floatingBuscar" placeholder="Buscar por Usuario, Área o Rol">
+                    <input type="text" class="form-control" name="buscar" value="{{ old('buscar') }}"
+                        id="floatingBuscar" placeholder="Buscar por Usuario, Área o Rol">
                     <label for="floatingBuscar">Buscar</label>
                 </div>
-                
+
                 <div class="form-floating me-2">
-                    <input type="date" class="form-control" name="fecha_asignacion" value="{{ old('fecha_asignacion') }}" id="floatingFechaAsignacion">
+                    <input type="date" class="form-control" name="fecha_asignacion"
+                        value="{{ old('fecha_asignacion') }}" id="floatingFechaAsignacion">
                     <label for="floatingFechaAsignacion">Fecha de Asignación</label>
                 </div>
-            
+
                 <button type="submit" class="btn btn-primary">Buscar</button>
-                <p>   </p>
+                <p> </p>
                 <a href="{{ route('usuario_area_rol_index') }}">
                     <button type="button" class="btn btn-danger">Reiniciar</button>
                 </a>
             </form>
-            
-            
+
+
         </div>
 
         <table class="table table-bordered">
@@ -116,6 +118,7 @@
                             {{ $asignacion->usuario->apellidoM }}</td>
                         <td>{{ $asignacion->area->nombre }}</td>
                         <td>{{ $asignacion->rol->nombre }}</td>
+                        <td>{{ $asignacion->fecha_asignacion }}</td>
                         <td>
                             <a
                                 href="{{ route('usuario_area_rol_modificar', ['id' => $asignacion->id_usuario_area_rol]) }}">
@@ -142,6 +145,19 @@
             <div>
                 {{ $asignaciones->links('pagination::bootstrap-5') }}
             </div>
+        </div>
+        <!-- Botones para generar PDF y Excel -->
+        <div class="d-flex justify-content-end mt-4">
+            <a href="{{ route('usuario_area_rol_exportar_pdf') }}" class="me-2">
+                <button id="download-pdf" class="btn btn-outline-danger btn-lg">
+                    <i class="bi bi-file-earmark-pdf"></i> Descargar PDF
+                </button>
+            </a>
+            <a href="{{ route('usuario_area_rol_exportar_excel') }}">
+                <button id="download-excel" class="btn btn-outline-success btn-lg">
+                    <i class="bi bi-file-earmark-excel"></i> Descargar Excel
+                </button>
+            </a>
         </div>
     </div>
 @endsection

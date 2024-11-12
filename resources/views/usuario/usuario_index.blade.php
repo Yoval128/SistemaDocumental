@@ -9,7 +9,7 @@
                         <h3 class="card-title">Lista de Usuarios</h3>
 
                         <div class="d-flex justify-content-between align-items-center mb-3">
-                         
+
                             <a href="{{ route('usuario_alta') }}">
                                 <button type="button" class="btn btn-warning">Nuevo Usuario</button>
                             </a>
@@ -56,7 +56,8 @@
                                     <tr>
                                         <td>{{ $key + 1 }}</td>
                                         <td>{{ $usuarios->id_usuario }}</td>
-                                        <td><img src="{{ asset('img/' . $usuarios->foto) }}" style="width: 50px; height:50px;"></td>
+                                        <td><img src="{{ asset('img/' . $usuarios->foto) }}"
+                                                style="width: 50px; height:50px;"></td>
                                         <td>{{ $usuarios->nombre }}</td>
                                         <td>{{ $usuarios->apellidoP . ' ' . $usuarios->apellidoM }}</td>
                                         <td>{{ $usuarios->email }}</td>
@@ -82,13 +83,26 @@
 
                         <div class="d-flex justify-content-between">
                             <div>
-                                <small>Mostrando {{ $usuario->firstItem() }} a {{ $usuario->lastItem() }} de {{ $usuario->total() }} usuarios</small>
+                                <small>Mostrando {{ $usuario->firstItem() }} a {{ $usuario->lastItem() }} de
+                                    {{ $usuario->total() }} usuarios</small>
                             </div>
                             <div>
                                 {{ $usuario->links('pagination::bootstrap-5') }}
                             </div>
                         </div>
-                        
+                        <!-- Botones para generar PDF y Excel -->
+                        <div class="d-flex justify-content-end mt-4">
+                            <a href="{{ route('usuario_exportar_pdf') }}" class="me-2">
+                                <button id="download-pdf" class="btn btn-outline-danger btn-lg">
+                                    <i class="bi bi-file-earmark-pdf"></i> Descargar PDF
+                                </button>
+                            </a>
+                            <a href="{{ route('usuario_exportar_excel') }}">
+                                <button id="download-excel" class="btn btn-outline-success btn-lg">
+                                    <i class="bi bi-file-earmark-excel"></i> Descargar Excel
+                                </button>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>

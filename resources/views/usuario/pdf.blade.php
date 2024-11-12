@@ -26,7 +26,6 @@
                                     <th>Apellido</th>
                                     <th>Email</th>
                                     <th>Rol</th>
-                                    <th>Acciones</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -40,20 +39,6 @@
                                         <td>{{ $usuarios->apellidoP . ' ' . $usuarios->apellidoM }}</td>
                                         <td>{{ $usuarios->email }}</td>
                                         <td>{{ $usuarios->rol }}</td>
-                                        <td>
-                                            <a href="{{ route('usuario_modificar', ['id' => $usuarios->id_usuario]) }}">
-                                                <button type="button" class="btn btn-warning btn-sm">Editar</button>
-                                            </a>
-                                            <a href="{{ route('usuario_eliminar', ['id' => $usuarios->id_usuario]) }}">
-                                                <button type="button" class="btn btn-danger btn-sm"
-                                                    onclick="return confirm('¿Seguro que quieres borrar este registro?')">
-                                                    Borrar
-                                                </button>
-                                            </a>
-                                            <a href="{{ route('usuario_detalle', ['id' => $usuarios->id_usuario]) }}">
-                                                <button type="button" class="btn btn-info btn-sm">Detalle</button>
-                                            </a>
-                                        </td>
                                     </tr>
                                 @endforeach
                             </tbody>

@@ -7,6 +7,11 @@ use Illuminate\Support\Facades\Auth;
 
 use App\Models\Usuario;
 
+
+use Barryvdh\DomPDF\Facade as PDF;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\RolExport;
+
 class UsuarioController extends Controller
 {
     public function login()
@@ -64,7 +69,7 @@ class UsuarioController extends Controller
         $usuario = Usuario::Buscar($request->buscar)->paginate(5);
         return view('usuario.usuario_index')->with(['usuario' => $usuario]);
     }
-    
+
     public function usuario_alta()
     {
         return view('usuario.usuario_alta');
@@ -169,5 +174,18 @@ class UsuarioController extends Controller
     {
         $query = Usuario::find($id);
         return view('usuario.usuario_detalle')->with(['usuario' => $query]);
+    }
+
+    public function usuario_exportar_pdf()
+    {
+        $usuario = Usuario::all();
+        $pdf = \PDF::loadView('usuario.pdf', compact('usuario'));
+        return $pdf->download('usuario.pdf');
+    }
+
+
+    public function usuario_exportar_excel()
+    {
+        return Excel::download(new RolExport, 'tramite.xlsx');
     }
 }

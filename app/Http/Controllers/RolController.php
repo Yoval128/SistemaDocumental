@@ -82,7 +82,7 @@ class RolController extends Controller
     {
         $roles = Rol::all();  
         $pdf = \PDF::loadView('roles.pdf', compact('roles'));
-        return $pdf->download('roles.pdf');  
+        return $pdf->download('rol.pdf');  
     }
 
     public function rol_exportar_excel()

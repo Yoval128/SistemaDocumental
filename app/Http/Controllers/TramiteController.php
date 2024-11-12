@@ -7,6 +7,10 @@ use App\Models\Tramite;
 use App\Models\Usuario;
 use App\Models\Area;
 
+use Barryvdh\DomPDF\Facade as PDF;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\RolExport;
+
 class TramiteController extends Controller
 {
     /*      public function __construct()
@@ -25,17 +29,17 @@ class TramiteController extends Controller
 
     public function tramite_index(Request $request)
     {
-        $buscar = $request->get('buscar', ''); 
-        $fecha_inicio = $request->get('fecha_inicio', ''); 
+        $buscar = $request->get('buscar', '');
+        $fecha_inicio = $request->get('fecha_inicio', '');
         $fecha_limite = $request->get('fecha_limite', '');
-    
+
         // Construir la consulta de los trámites
         $tramites = Tramite::with(['usuario', 'area'])
             ->buscar($buscar) // Aplica la búsqueda por usuario, área o estado
             ->fechaInicio($fecha_inicio) // Aplica el filtro por fecha de inicio
             ->fechaLimite($fecha_limite) // Aplica el filtro por fecha límite
             ->paginate(5); // Paginación
-    
+
         return view('tramite.tramite_index')->with([
             'tramites' => $tramites,
             'usuarios' => Usuario::all(),
@@ -45,7 +49,7 @@ class TramiteController extends Controller
             'fecha_limite' => $fecha_limite,
         ]);
     }
-    
+
 
 
     public function tramite_alta()
@@ -179,5 +183,18 @@ class TramiteController extends Controller
             'usuario' => $usuario,
             'areas' => $areas,
         ]);
+    }
+
+    public function tramite_exportar_pdf()
+    {
+        $tramites = Tramite::all();
+        $pdf = \PDF::loadView('tramite.pdf', compact('tramites'));
+        return $pdf->download('tramite.pdf');
+    }
+
+
+    public function tramite_exportar_excel()
+    {
+        return Excel::download(new RolExport, 'tramite.xlsx');
     }
 }

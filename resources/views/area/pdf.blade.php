@@ -14,15 +14,12 @@
             <div class="card">
                 <div class="card-body">
                     <h3 class="card-title">Asignación de Áreas</h3>
-
-
                     <table id="areas-table" class="table table-striped">
                         <thead>
                             <tr>
                                 <th>#</th>
                                 <th>ID Area</th>
                                 <th>Área</th>
-                                <th>Acciones</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -36,18 +33,6 @@
                                         <td>{{ $key + 1 }}</td>
                                         <td>{{ $area->id_area }}</td>
                                         <td>{{ $area->nombre }}</td>
-                                        <td>
-                                            <a href="{{ route('areas_modificar', ['id' => $area->id_area]) }}">
-                                                <button type="button" class="btn btn-warning btn-sm">Editar</button>
-                                            </a>
-                                            <a href="{{ route('areas_eliminar', ['id' => $area->id_area]) }}">
-                                                <button type="button" class="btn btn-danger btn-sm"
-                                                    onclick="return confirm('¿Seguro que quieres borrar esta asignación?')">Borrar</button>
-                                            </a>
-                                            <a href="{{ route('areas_detalle', ['id' => $area->id_area]) }}">
-                                                <button type="button" class="btn btn-info btn-sm">Detalle</button>
-                                            </a>
-                                        </td>
                                     </tr>
                                 @endforeach
                             @endif

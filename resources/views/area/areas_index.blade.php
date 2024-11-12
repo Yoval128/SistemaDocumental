@@ -84,18 +84,22 @@
                                 {{ $areas->links('pagination::bootstrap-5') }}
                             </div>
                         </div>
-
                         <!-- Botones para generar PDF y Excel -->
-                        <button id="download-pdf" class="btn btn-primary mb-3">Descargar PDF</button>
-                        <button id="download-excel" class="btn btn-success mb-3">Descargar Excel</button>
+                        <div class="d-flex justify-content-end mt-4">
+                            <a href="{{ route('area_exportar_pdf') }}" class="me-2">
+                                <button id="download-pdf" class="btn btn-outline-danger btn-lg">
+                                    <i class="bi bi-file-earmark-pdf"></i> Descargar PDF
+                                </button>
+                            </a>
+                            <a href="{{ route('area_exportar_excel') }}">
+                                <button id="download-excel" class="btn btn-outline-success btn-lg">
+                                    <i class="bi bi-file-earmark-excel"></i> Descargar Excel
+                                </button>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 @endsection
-
-@push('scripts')
-    <script src="{{ asset('js/export-excel-pdf/areas.js') }}"></script>
-@endpush
-

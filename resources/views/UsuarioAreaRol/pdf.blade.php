@@ -22,7 +22,6 @@
                     <th>Área</th>
                     <th>Rol</th>
                     <th>Fecha de Asignación</th>
-                    <th>Acciones</th>
                 </tr>
             </thead>
             <tbody>
@@ -34,21 +33,7 @@
                             {{ $asignacion->usuario->apellidoM }}</td>
                         <td>{{ $asignacion->area->nombre }}</td>
                         <td>{{ $asignacion->rol->nombre }}</td>
-                        <td>
-                            <a
-                                href="{{ route('usuario_area_rol_modificar', ['id' => $asignacion->id_usuario_area_rol]) }}">
-                                <button type="button" class="btn btn-warning btn-sm">Editar</button>
-                            </a>
-                            <a
-                                href="{{ route('usuario_area_rol_eliminar', ['id' => $asignacion->id_usuario_area_rol]) }}">
-                                <button type="button" class="btn btn-danger btn-sm"
-                                    onclick="return confirm('¿Seguro que quieres borrar esta asignación?')">Borrar</button>
-                            </a>
-                            <a
-                                href="{{ route('usuario_area_rol_detalle', ['id' => $asignacion->id_usuario_area_rol]) }}">
-                                <button type="button" class="btn btn-info btn-sm">Detalle</button>
-                            </a>
-                        </td>
+                        <td>{{ $asignacion->fecha_asignacion }}</td>
                     </tr>
                 @endforeach
             </tbody>

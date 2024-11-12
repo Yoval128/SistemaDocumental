@@ -8,6 +8,9 @@ use Illuminate\Support\Facades\Session;
 use App\Models\Area;
 use App\Models\Usuario;
 
+use Barryvdh\DomPDF\Facade as PDF;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\RolExport;
 class AreaController extends Controller
 {
     public function areas_index(Request $request)
@@ -15,7 +18,7 @@ class AreaController extends Controller
         $areas = Area::Buscar($request->buscar)->paginate(8);
         return view('area.areas_index')->with(['areas' => $areas]);
     }
-    
+
 
     public function areas_alta()
     {
@@ -77,5 +80,18 @@ class AreaController extends Controller
     {
         $query = Area::find($id);
         return view('area.areas_detalle')->with(['areas' => $query]);
+    }
+
+    public function area_exportar_pdf()
+    {
+        $areas = Area::all();
+        $pdf = \PDF::loadView('area.pdf', compact('areas'));
+        return $pdf->download('area.pdf');
+    }
+
+
+    public function area_exportar_excel()
+    {
+        return Excel::download(new RolExport, 'areas.xlsx');
     }
 }

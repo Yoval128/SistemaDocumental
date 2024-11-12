@@ -8,6 +8,10 @@ use App\Models\Usuario;
 use App\Models\Area;
 use App\Models\Rol;
 
+use Barryvdh\DomPDF\Facade as PDF;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\RolExport;
+
 class UsuarioAreaRolController extends Controller
 {
     public function usuario_area_rol_index(Request $request)
@@ -15,23 +19,23 @@ class UsuarioAreaRolController extends Controller
         // Recibimos los datos de búsqueda desde el formulario
         $buscar = $request->get('buscar', '');
         $fecha_asignacion = $request->get('fecha_asignacion', '');
-    
+
         // Iniciamos la consulta con las relaciones necesarias
         $asignacionesQuery = UsuarioAreaRol::with(['usuario', 'area', 'rol']);
-    
+
         // Si hay un término de búsqueda
         if ($buscar != '') {
             $asignacionesQuery->buscar($buscar);
         }
-    
+
         // Si hay una fecha de asignación seleccionada, filtramos por fecha
         if ($fecha_asignacion != '') {
             $asignacionesQuery->whereDate('fecha_asignacion', $fecha_asignacion);
         }
-    
+
         // Paginar los resultados
         $asignaciones = $asignacionesQuery->paginate(5);
-    
+
         // Devolver los datos a la vista
         return view('UsuarioAreaRol.usuario_area_rol_index', [
             'asignaciones' => $asignaciones,
@@ -42,7 +46,7 @@ class UsuarioAreaRolController extends Controller
             'fecha_asignacion' => $fecha_asignacion,
         ]);
     }
-    
+
 
 
     public function usuario_area_rol_registrar(Request $request)
@@ -103,5 +107,19 @@ class UsuarioAreaRolController extends Controller
     {
         $asignacion = UsuarioAreaRol::with(['usuario', 'area', 'rol'])->find($id);
         return view('UsuarioAreaRol.usuario_area_rol_detalle')->with(['asignacion' => $asignacion]);
+    }
+
+
+    public function usuario_area_rol_exportar_pdf()
+    {
+        $asignaciones = UsuarioAreaRol::all();
+        $pdf = \PDF::loadView('UsuarioAreaRol.pdf', compact('asignaciones'));
+        return $pdf->download('UsuarioAreaRol.pdf');
+    }
+
+
+    public function usuario_area_rol_exportar_excel()
+    {
+        return Excel::download(new RolExport, 'UsuarioAreaRol.xlsx');
     }
 }
