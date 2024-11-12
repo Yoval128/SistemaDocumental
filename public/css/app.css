@@ -1,0 +1,335 @@
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    font-family: Arial, sans-serif; /* Fuente más legible */
+    background-color: #f8f9fa; /* Color de fondo suave */
+}
+/* Barra lateral */
+.sidebar {
+    width: 260px; /* Ancho más cómodo */
+    background: #343a40; /* Color oscuro de fondo */
+    color: #fff; /* Texto blanco */
+    padding: 20px;
+    box-shadow: 2px 0 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    transition: all 0.3s ease; 
+    background-color: #000;
+}
+
+.btn-cerrar {
+    background: transparent; /* Fondo transparente */
+    border: none; /* Sin borde */
+    color: inherit; /* Hereda el color del texto del contenedor */
+    cursor: pointer; /* Muestra el cursor de puntero */
+    padding: 0; /* Sin padding para evitar desplazamientos */
+    font: inherit; /* Hereda la fuente y tamaño del contenedor */
+}
+
+
+/* Listado de elementos del menú */
+.sidebar ul {
+    list-style: none; /* Quitar los puntos de lista */
+    padding-left: 0;
+    background-color: #000;
+
+}
+
+.btn-cerrar button {
+    background: transparent !important; /* Fondo transparente */
+    border: none !important; /* Sin borde */
+    color: inherit !important; /* Usa el color del texto actual o ajusta según sea necesario */
+    cursor: pointer; /* Cambia el cursor a puntero para indicar que es clickeable */
+    padding: 0; /* Opcional: elimina el padding si es necesario */
+}
+
+
+.sidebar .list-group-item {
+    border: none; /* Sin bordes */
+    background: transparent; /* Fondo transparente */
+    padding: 12px 15px;
+    color: #ddd; /* Texto gris claro */
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background 0.3s ease, padding-left 0.3s ease;
+}
+
+.sidebar .list-group-item:hover {
+    background-color: #495057; /* Color de hover suave */
+    padding-left: 20px; /* Desplazar ligeramente */
+    color: #fff; /* Cambiar texto a blanco */
+}
+
+.sidebar .list-group-item.active {
+    background-color: #fcc50f; /* Color azul para el ítem activo */
+    color: #fff; /* Texto blanco */
+}
+
+.sidebar .list-group-item a {
+    color: inherit; /* Heredar color del texto */
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+}
+
+.sidebar .list-group-item a:hover {
+    text-decoration: underline; /* Subrayado al hacer hover */
+}
+
+.sidebar .list-group-item i {
+    margin-right: 10px;
+    font-size: 18px; /* Tamaño de los íconos */
+}
+
+.main-content {
+    flex: 1;
+    padding: 20px;
+}
+
+.header,
+.title-box,
+.description-box,
+.alerts-section {
+    margin-bottom: 20px;
+}
+
+.header {
+    background: #000; /* Fondo negro */
+    color: #fff; /* Texto blanco */
+    padding: 15px;
+    border-radius: 5px;
+}
+
+.title-box h1 {
+    font-size: 24px; /* Tamaño de fuente más grande */
+}
+
+.menu-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between; /* Espaciado uniforme */
+}
+
+.bienv img{
+    width: 100% !important;
+    height: auto;
+    display: block; /* Asegura que se comporte como un bloque sin ajustar al centro */
+    object-fit: contain;
+    border-radius: 10px !important;
+    margin: 0;
+    padding: 0 0 45px 0 ;
+    
+    
+}
+
+
+.menu-box {
+    width: 23% !important;
+    margin: 1% !important;
+    padding: 15px; /* Mayor espacio interno */
+    border-radius: 8px; /* Bordes más suaves */
+    text-align: center;
+    background-color: #fff; /* Fondo blanco */
+    transition: transform 0.3s, box-shadow 0.3s; /* Animación suave */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
+}
+
+.menu-box:hover {
+    background: #ebf1af; /* Color al pasar el mouse */
+    transform: translateY(-3px); /* Efecto de elevación */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); 
+    color: #000;
+}
+
+.menu-icon img {
+    max-width: 50px; /* Tamaño máximo de icono */
+    margin-bottom: 10px; /* Espaciado debajo del icono */
+}
+
+.menu-title h2 {
+    font-size: 18px; /* Tamaño de título más grande */
+    margin: 5px 0; /* Margen para el título */
+}
+
+.menu-description p {
+    font-size: 14px; /* Tamaño de fuente más pequeño */
+    color: #666; /* Color de texto más suave */
+}
+
+/* Estilos para enlaces */
+.menu-box a {
+    text-decoration: none; /* Quitar subrayado de los enlaces */
+    color: #000; /* Color del enlace en negro */
+}
+
+.menu-box a:hover {
+    color: #000; /* Color azul al pasar el ratón */
+    font-weight: bold; /* Negrita al pasar el ratón */
+}
+
+.alerts-section {
+    background: #eaeaea; /* Fondo gris suave */
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+}
+
+.alerts-section h2 {
+    margin: 0 0 10px; /* Margen para el título de alertas */
+}
+
+.alerts-section ul {
+    list-style-type: none; /* Sin viñetas */
+    padding: 0; /* Sin relleno */
+}
+
+.alerts-section li {
+    padding: 5px 0; /* Espaciado entre elementos de lista */
+    border-bottom: 1px solid #ccc; /* Línea suave entre alertas */
+}
+
+.alerts-section li:last-child {
+    border-bottom: none; /* Sin línea en el último elemento */
+}
+
+/* Header de dashboard */
+
+.header-home {
+    display: flex; /* Usar flexbox para alinear elementos */
+    justify-content: space-between; /* Espaciado entre el texto y el botón */
+    align-items: center; /* Centrar verticalmente */
+    padding: 15px 20px; /* Espaciado interno */
+    background-color: #000; /* Fondo negro */
+    color: #fff; /* Texto blanco */
+    border-radius: 5px; /* Bordes redondeados */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+    margin-bottom: 20px; /* Espacio abajo */
+}
+
+.greeting-box {
+    display: flex; /* Usar flexbox para el texto */
+    align-items: center; /* Centrar verticalmente */
+}
+
+.greeting-box h3 {
+    font-size: 24px; /* Tamaño de fuente grande */
+    margin: 0; /* Sin margen */
+}
+
+.greeting-actions {
+    margin-left: 20px; /* Espacio entre el texto y el botón */
+}
+
+.greeting-actions button {
+    background-color: #007bff; /* Color del botón */
+    color: white; /* Color del texto del botón */
+    border: none; /* Sin borde */
+    border-radius: 5px; /* Bordes redondeados */
+    padding: 10px 20px; /* Espaciado interno */
+    font-size: 16px; /* Tamaño de fuente del botón */
+    cursor: pointer; /* Cambiar cursor al pasar por encima */
+    transition: background-color 0.3s; /* Transición suave */
+}
+
+.greeting-actions button:hover {
+    background-color: #0056b3; /* Color del botón al pasar por encima */
+}
+
+/* Línea dorada */
+.header-home::after {
+    content: ""; /* Necesario para crear una línea */
+    display: block; /* Hace que la línea sea un bloque */
+    height: 3px; /* Altura de la línea */
+    background-color: gold; /* Color dorado */
+    margin-top: 10px; /* Espacio arriba de la línea */
+}
+
+/* CSS del las ligas d edetalle */
+
+.documentos-list {
+    list-style: none; /* Quita los puntos de la lista */
+    padding: 0; /* Quita el padding */
+}
+
+.documentos-list li {
+    margin: 5px 0; /* Espacio entre elementos */
+}
+
+.documentos-list a {
+    text-decoration: none; /* Quita el subrayado */
+    color: #007bff; /* Color del texto */
+    padding: 5px 10px; /* Espaciado interno */
+    border: 1px solid #007bff; /* Bordes */
+    border-radius: 5px; /* Bordes redondeados */
+    transition: background-color 0.3s ease; /* Transición suave */
+}
+
+.documentos-list a:hover {
+    background-color: #007bff; /* Color al pasar el ratón */
+    color: white; /* Cambiar color de texto al pasar el ratón */
+}
+
+.importante {
+    
+    padding: 20px; /* Espacio interno alrededor del contenido */
+    margin: 20px; /* Margen alrededor del div */
+    background-color: #fcd65a; /* Fondo claro para que resalte el borde negro */
+    border-radius: 5px; /* Bordes redondeados para un toque más suave */
+}
+
+.importante h3 {
+    color: #000; /* Color de texto oscuro para el título */
+    font-size: 24px; /* Tamaño de fuente grande para el título */
+    margin-bottom: 10px;
+    font-family: 'Times New Roman', Times, serif;
+    
+}
+
+.importante p {
+    color: #000; /* Color de texto gris suave para el párrafo */
+    font-size: 16px; /* Tamaño de fuente adecuado para el texto */
+    line-height: 1.6; 
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.gobierno {
+    background-color: #CE1126;
+    padding: 20px; /* Espacio interno alrededor del contenido */
+    margin: 20px; /* Margen alrededor del div */
+    border-radius: 5px; 
+    color: white;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.gobierno h3 {
+    /* Verde agua futurista */
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.gobierno p {
+    font-size: 16px;
+    line-height: 1.6;
+    text-align: justify;
+}
+
+.gob-img {
+    display: flex;           /* Centra el contenido dentro del div */
+    justify-content: center;  /* Centra horizontalmente */
+    align-items: center;      /* Centra verticalmente */
+    width: 80vw;             /* Toma el ancho completo de la ventana */
+    height: 100vh;            /* Toma el alto completo de la ventana */
+    overflow: hidden;         /* Oculta el exceso de la imagen en los bordes */
+}
+
+.gob-img img {
+    width: 100%;              /* La imagen ocupa el ancho del contenedor */
+    height: 100%;             /* La imagen ocupa el alto del contenedor */
+    object-fit: cover;        /* La imagen se adapta sin deformarse */
+    border-radius: 15px;      /* Borde redondeado */
+}
+
+
+/* PAginacion */
