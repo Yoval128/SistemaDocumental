@@ -81,11 +81,25 @@
                         </table>
                         <div class="d-flex justify-content-between">
                             <div>
-                                <small>Mostrando {{ $roles->firstItem() }} a {{ $roles->lastItem() }} de {{ $roles->total() }} Roles</small>
+                                <small>Mostrando {{ $roles->firstItem() }} a {{ $roles->lastItem() }} de
+                                    {{ $roles->total() }} Roles</small>
                             </div>
                             <div>
                                 {{ $roles->links('pagination::bootstrap-5') }}
                             </div>
+                        </div>
+                        <!-- Botones para generar PDF y Excel -->
+                        <div class="d-flex justify-content-end mt-4">
+                            <a href="{{ route('rol_exportar_pdf') }}" class="me-2">
+                                <button id="download-pdf" class="btn btn-outline-danger btn-lg">
+                                    <i class="bi bi-file-earmark-pdf"></i> Descargar PDF
+                                </button>
+                            </a>
+                            <a href="{{ route('rol_exportar_excel') }}">
+                                <button id="download-excel" class="btn btn-outline-success btn-lg">
+                                    <i class="bi bi-file-earmark-excel"></i> Descargar Excel
+                                </button>
+                            </a>
                         </div>
 
                     </div>

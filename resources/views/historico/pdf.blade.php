@@ -1,40 +1,22 @@
-@extends('layouts.app')
+<!DOCTYPE html>
+<html lang="en">
 
-@section('content')
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+
+
+<body>
     <div class="container">
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-body">
                         <h3 class="card-title">Lista de Históricos</h3>
-
-                        <div class="d-flex justify-content-between align-items-center mb-3">
-                            <a href="{{ route('historico_alta') }}">
-                                <button type="button" class="btn btn-warning">Nuevo Registro</button>
-                            </a>
-
-                            <form action="{{ route('historico_index') }}" method="GET" class="d-flex align-items-center">
-                                {{ csrf_field() }}
-
-                                <div class="form-floating me-2">
-                                    <input type="text" class="form-control" name="buscar" value="{{ old('buscar') }}"
-                                        id="floatingBuscar" placeholder="ejemplo: Roberto Vinicio"
-                                        aria-describedby="buscarHelp">
-                                    <label for="floatingBuscar">Buscar</label>
-                                    <div id="buscarHelp" class="form-text">
-                                        @if ($errors->first('buscar'))
-                                            <small class="text-danger">{{ $errors->first('buscar') }}</small>
-                                        @endif
-                                    </div>
-                                </div>
-
-                                <button type="submit" class="btn btn-primary me-2">Buscar</button>
-
-                                <a href="{{ route('historico_index') }}">
-                                    <button type="button" class="btn btn-danger">Reiniciar</button>
-                                </a>
-                            </form>
-                        </div>
 
                         <table class="table table-striped">
                             <thead>
@@ -74,7 +56,8 @@
                                             <td>
                                                 <a
                                                     href="{{ route('historico_modificar', ['id' => $historico->id_historico]) }}">
-                                                    <button type="button" class="btn btn-warning btn-sm">Editar</button>
+                                                    <button type="button"
+                                                        class="btn btn-warning btn-sm">Editar</button>
                                                 </a>
                                                 <a
                                                     href="{{ route('historico_eliminar', ['id' => $historico->id_historico]) }}">
@@ -93,31 +76,11 @@
                                 @endif
                             </tbody>
                         </table>
-                        <div class="d-flex justify-content-between">
-                            <div>
-                                <small>Mostrando {{ $historicos->firstItem() }} a {{ $historicos->lastItem() }}
-                                    de {{ $historicos->total() }} concentraciones</small>
-                            </div>
-                            <div>
-                                {{ $historicos->links('pagination::bootstrap-5') }}
-                            </div>
-                        </div>
-                        <!-- Botones para generar PDF y Excel -->
-                        <div class="d-flex justify-content-end mt-4">
-                            <a href="{{ route('historico_exportar_pdf') }}" class="me-2">
-                                <button id="download-pdf" class="btn btn-outline-danger btn-lg">
-                                    <i class="bi bi-file-earmark-pdf"></i> Descargar PDF
-                                </button>
-                            </a>
-                            <a href="{{ route('historico_exportar_excel') }}">
-                                <button id="download-excel" class="btn btn-outline-success btn-lg">
-                                    <i class="bi bi-file-earmark-excel"></i> Descargar Excel
-                                </button>
-                            </a>
-                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-@endsection
+</body>
+
+</html>

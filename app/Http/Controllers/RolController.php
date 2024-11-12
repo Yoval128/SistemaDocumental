@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Rol;
 
+use Barryvdh\DomPDF\Facade as PDF;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\RolExport;
 class RolController extends Controller
 {
     public function rol_index(Request $request)
@@ -73,5 +76,17 @@ class RolController extends Controller
     {
         $query = Rol::find($id);
         return view('roles.roles_detalle')->with(['roles' => $query]);
+    }
+
+    public function rol_exportar_pdf()
+    {
+        $roles = Rol::all();  
+        $pdf = \PDF::loadView('roles.pdf', compact('roles'));
+        return $pdf->download('roles.pdf');  
+    }
+
+    public function rol_exportar_excel()
+    {
+        return Excel::download(new RolExport, 'roles.xlsx');
     }
 }

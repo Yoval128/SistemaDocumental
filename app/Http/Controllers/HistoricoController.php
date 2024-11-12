@@ -7,6 +7,10 @@ use App\Models\Historico;
 use App\Models\Usuario;
 use App\Models\Tramite;
 
+use Barryvdh\DomPDF\Facade as PDF;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\HistoricoExport;
+
 class HistoricoController extends Controller
 {
 
@@ -127,5 +131,17 @@ class HistoricoController extends Controller
     {
         $query = Historico::find($id);
         return view('historico.historico_detalle')->with(['historico' => $query]);
+    }
+
+    public function concentracion_exportar_pdf()
+    {
+        $historicos = Historico::all();  // Obtener todas las concentraciones
+        $pdf = \PDF::loadView('historico.pdf', compact('historicos'));
+        return $pdf->download('historico.pdf');  // Descargar el archivo PDF generado
+    }
+
+    public function concentracion_exportar_excel()
+    {
+        return Excel::download(new HistoricoExport, 'historico.xlsx');
     }
 }

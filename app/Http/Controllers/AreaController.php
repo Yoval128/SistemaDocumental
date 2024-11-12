@@ -15,7 +15,7 @@ class AreaController extends Controller
         $areas = Area::Buscar($request->buscar)->paginate(8);
         return view('area.areas_index')->with(['areas' => $areas]);
     }
-
+    
 
     public function areas_alta()
     {

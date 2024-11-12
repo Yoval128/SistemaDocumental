@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Concentracion;
+use Barryvdh\DomPDF\Facade as PDF;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\ConcentracionExport;
 
 class ConcentracionController extends Controller
 {
@@ -12,24 +15,24 @@ class ConcentracionController extends Controller
             $this->middleware('auth');
         } */
 
-        public function concentracion_index(Request $request)
-        {
-            // Obtener los valores de 'buscar', 'fecha_inicio' y 'fecha_limite' desde el request
-            $buscar = $request->input('buscar');
-            $fecha_inicio = $request->input('fecha_inicio');
-            $fecha_limite = $request->input('fecha_limite');
-        
-            // Realizar la búsqueda utilizando el método de búsqueda en el modelo
-            $concentraciones = Concentracion::Buscar($buscar)
-                                             ->FechaInicio($fecha_inicio)
-                                             ->FechaLimite($fecha_limite)
-                                             ->paginate(5);
-        
-            // Pasar las variables a la vista
-            return view('concentracion.concentracion_index', compact('concentraciones', 'buscar', 'fecha_inicio', 'fecha_limite'));
-        }
-        
-        
+    public function concentracion_index(Request $request)
+    {
+        // Obtener los valores de 'buscar', 'fecha_inicio' y 'fecha_limite' desde el request
+        $buscar = $request->input('buscar');
+        $fecha_inicio = $request->input('fecha_inicio');
+        $fecha_limite = $request->input('fecha_limite');
+
+        // Realizar la búsqueda utilizando el método de búsqueda en el modelo
+        $concentraciones = Concentracion::Buscar($buscar)
+            ->FechaInicio($fecha_inicio)
+            ->FechaLimite($fecha_limite)
+            ->paginate(5);
+
+        // Pasar las variables a la vista
+        return view('concentracion.concentracion_index', compact('concentraciones', 'buscar', 'fecha_inicio', 'fecha_limite'));
+    }
+
+
 
 
     public function concentracion_alta()
@@ -177,5 +180,17 @@ class ConcentracionController extends Controller
     {
         $query = Concentracion::find($id);
         return view('concentracion.concentracion_detalle')->with(['concentracion' => $query]);
+    }
+
+    public function concentracion_exportar_pdf()
+    {
+        $concentraciones = Concentracion::all();  // Obtener todas las concentraciones
+        $pdf = \PDF::loadView('concentracion.pdf', compact('concentraciones'));
+        return $pdf->download('concentraciones.pdf');  // Descargar el archivo PDF generado
+    }
+
+    public function concentracion_exportar_excel()
+    {
+        return Excel::download(new ConcentracionExport, 'concentraciones.xlsx');
     }
 }

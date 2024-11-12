@@ -168,6 +168,9 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+        Barryvdh\DomPDF\ServiceProvider::class, // Agregado para PDF
+        Maatwebsite\Excel\ExcelServiceProvider::class, // Agregado para Excel
+
     ])->toArray(),
 
     /*
@@ -182,7 +185,8 @@ return [
     */
 
     'aliases' => Facade::defaultAliases()->merge([
-        // 'Example' => App\Facades\Example::class,
+        Barryvdh\DomPDF\ServiceProvider::class, // Agregado para PDF
+        'Excel' => Maatwebsite\Excel\Facades\Excel::class, // Agregado para Excel
     ])->toArray(),
 
 ];

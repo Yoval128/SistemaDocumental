@@ -18,7 +18,6 @@
                                 class="d-flex align-items-center">
                                 {{ csrf_field() }}
 
-                                <!-- Campo de búsqueda -->
                                 <div class="form-floating me-2">
                                     <input type="text" class="form-control" name="buscar"
                                         value="{{ old('buscar', $buscar) }}" id="floatingBuscar"
@@ -127,8 +126,19 @@
                                 {{ $concentraciones->links('pagination::bootstrap-5') }}
                             </div>
                         </div>
-
-
+                    </div>
+                    <!-- Botones para generar PDF y Excel -->
+                    <div class="d-flex justify-content-end mt-4">
+                        <a href="{{ route('concentracion_exportar_pdf') }}" class="me-2">
+                            <button id="download-pdf" class="btn btn-outline-danger btn-lg">
+                                <i class="bi bi-file-earmark-pdf"></i> Descargar PDF
+                            </button>
+                        </a>
+                        <a href="{{ route('concentracion_exportar_excel') }}">
+                            <button id="download-excel" class="btn btn-outline-success btn-lg">
+                                <i class="bi bi-file-earmark-excel"></i> Descargar Excel
+                            </button>
+                        </a>
                     </div>
                 </div>
             </div>
