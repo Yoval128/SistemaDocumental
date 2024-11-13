@@ -133,14 +133,14 @@ class HistoricoController extends Controller
         return view('historico.historico_detalle')->with(['historico' => $query]);
     }
 
-    public function concentracion_exportar_pdf()
+    public function historico_exportar_pdf()
     {
-        $historicos = Historico::all();  // Obtener todas las concentraciones
+        $historicos = Historico::all();  // Obtener todos los históricos
         $pdf = \PDF::loadView('historico.pdf', compact('historicos'));
         return $pdf->download('historico.pdf');  // Descargar el archivo PDF generado
     }
 
-    public function concentracion_exportar_excel()
+    public function historico_exportar_excel()
     {
         return Excel::download(new HistoricoExport, 'historico.xlsx');
     }

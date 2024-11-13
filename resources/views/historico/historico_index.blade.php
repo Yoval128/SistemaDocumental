@@ -103,7 +103,7 @@
                             </div>
                         </div>
                         <!-- Botones para generar PDF y Excel -->
-                        <div class="d-flex justify-content-end mt-4">
+                        {{-- <div class="d-flex justify-content-end mt-4">
                             <a href="{{ route('historico_exportar_pdf') }}" class="me-2">
                                 <button id="download-pdf" class="btn btn-outline-danger btn-lg">
                                     <i class="bi bi-file-earmark-pdf"></i> Descargar PDF
@@ -114,7 +114,7 @@
                                     <i class="bi bi-file-earmark-excel"></i> Descargar Excel
                                 </button>
                             </a>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
             </div>

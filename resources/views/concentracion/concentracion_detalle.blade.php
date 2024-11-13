@@ -47,12 +47,11 @@
                 </div>
             </div>
 
-
             <div class="row mb-3">
                 <div class="col-md-12">
                     <strong>Documentos Adjuntos:</strong>
                     <div class="documentos-container">
-                        @if ($concentracion->archivo_pdf)
+                        @if ($concentracion->archivo_pdf && is_array(json_decode($concentracion->archivo_pdf)))
                             @foreach (json_decode($concentracion->archivo_pdf) as $documento)
                                 <a href="{{ url('pdfs/' . $documento) }}" target="_blank"
                                     class="btn btn-primary btn-sm documento-btn">
@@ -63,6 +62,7 @@
                             <p>No hay documentos adjuntos.</p>
                         @endif
                     </div>
+
                 </div>
             </div>
 

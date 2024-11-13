@@ -6,7 +6,13 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-body">
-                        <h3 class="card-title">Lista de Concentraciones</h3>
+                        <h3 class="card-title">Cuadro de Clasificación</h3>
+                        <p>Cuadro de Clasificación tiene como propósito organizar y presentar la estructura de clasificación
+                            archivística de documentos en el sistema de gestión documental. Este módulo permite visualizar y
+                            navegar por diferentes niveles de categorías que agrupan los documentos según criterios
+                            archivísticos estándar, facilitando la identificación y localización de información específica
+                            en el archivo.
+                        </p>
 
                         <div class="d-flex justify-content-between align-items-center mb-3">
 
@@ -30,7 +36,6 @@
                                     </div>
                                 </div>
 
-                                <!-- Filtro de fecha de inicio -->
                                 <div class="form-floating me-2">
                                     <input type="date" class="form-control" name="fecha_inicio"
                                         value="{{ old('fecha_inicio', $fecha_inicio) }}" id="floatingFechaInicio"
@@ -43,7 +48,6 @@
                                     </div>
                                 </div>
 
-                                <!-- Filtro de fecha límite -->
                                 <div class="form-floating me-2">
                                     <input type="date" class="form-control" name="fecha_limite"
                                         value="{{ old('fecha_limite', $fecha_limite) }}" id="floatingFechaLimite"
@@ -56,7 +60,6 @@
                                     </div>
                                 </div>
 
-                                <!-- Botones de búsqueda y reiniciar -->
                                 <button type="submit" class="btn btn-primary me-2">Buscar</button>
                                 <a href="{{ route('concentracion_index') }}">
                                     <button type="button" class="btn btn-danger">Reiniciar</button>

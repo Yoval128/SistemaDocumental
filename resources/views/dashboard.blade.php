@@ -1,9 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-   
-
-    <div class="bienv"> 
+    <div class="bienv">
         <img src="img/icon/bienve.png" alt="">
     </div>
 
@@ -17,19 +15,7 @@
                     <div class="menu-title">
                         <h2>Gestion de usuarios</h2>
                     </div>
-                    
-                </a>
-            </div>
 
-            <div class="menu-box">
-                <a href="{{ route('tramite_index') }}">
-                    <div class="menu-icon">
-                    <img src="{{ asset('img/icon/tramite.png') }}" alt="Trámites">
-
-                    </div>
-                    <div class="menu-title">
-                        <h2>Trámites disponibles</h2>
-                    </div>
                 </a>
             </div>
 
@@ -39,7 +25,19 @@
                         <img src="img/icon/concentracion.png" alt="Concentración">
                     </div>
                     <div class="menu-title">
-                        <h2>Expedientes</h2>
+                        <h2>Cuadro de Clasificación</h2>
+                    </div>
+                </a>
+            </div>
+
+            <div class="menu-box">
+                <a href="{{ route('tramite_index') }}">
+                    <div class="menu-icon">
+                        <img src="{{ asset('img/icon/tramite.png') }}" alt="Trámites">
+
+                    </div>
+                    <div class="menu-title">
+                        <h2>Trámites disponibles</h2>
                     </div>
                 </a>
             </div>
@@ -94,10 +92,12 @@
         <h3>
             IMPORTANTE
         </h3>
-        <p> 
-        La administración eficiente de documentos históricos es clave para preservar, organizar y acceder fácilmente a información relevante
-         a lo largo del tiempo. Un software de gestión documental en un archivo histórico permite digitalizar y clasificar documentos, agilizar
-         la búsqueda de información y garantizar la seguridad y conservación de los archivos.
+        <p>
+            La administración eficiente de documentos históricos es clave para preservar, organizar y acceder fácilmente a
+            información relevante
+            a lo largo del tiempo. Un software de gestión documental en un archivo histórico permite digitalizar y
+            clasificar documentos, agilizar
+            la búsqueda de información y garantizar la seguridad y conservación de los archivos.
         </p>
     </div>
 
@@ -105,12 +105,15 @@
 
     <div class="gobierno">
         <h3>
-             Marco Legal y proteccion de datos Gobierno de México 
+            Marco Legal y proteccion de datos Gobierno de México
         </h3>
         <br>
-        <p> 
-        El Gobierno de México es el titular de todos los datos proporcionados a través de este programa. Se requiere un uso responsable de esta información; cualquier uso indebido podría derivar en sanciones legales.
-        Los datos aquí almacenados son de carácter confidencial y están protegidos bajo las leyes y normativas vigentes en México. Cualquier consulta, procesamiento o difusión no autorizada de la información será considerada una infracción y será tratada de acuerdo con las disposiciones legales correspondientes.
+        <p>
+            El Gobierno de México es el titular de todos los datos proporcionados a través de este programa. Se requiere un
+            uso responsable de esta información; cualquier uso indebido podría derivar en sanciones legales.
+            Los datos aquí almacenados son de carácter confidencial y están protegidos bajo las leyes y normativas vigentes
+            en México. Cualquier consulta, procesamiento o difusión no autorizada de la información será considerada una
+            infracción y será tratada de acuerdo con las disposiciones legales correspondientes.
         </p>
     </div>
 

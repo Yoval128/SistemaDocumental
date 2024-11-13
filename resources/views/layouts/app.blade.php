@@ -31,6 +31,12 @@
                 </li>
 
 
+                <!-- Concentración -->
+                <li class="list-group-item"><strong>Cuadro de Clasificación</strong></li>
+                <li class="list-group-item"><a href="{{ route('concentracion_index') }}"><i
+                            class="fas fa-balance-scale"></i>Mostrar Cuadro de Clasificación</a></li>
+                <li class="list-group-item"><a href="{{ route('concentracion_alta') }}"><i
+                            class="fas fa-plus-circle"></i>Crear Concentración</a></li>
 
                 <!-- Áreas -->
                 <li class="list-group-item"><strong>Áreas</strong></li>
@@ -65,12 +71,6 @@
                 <li class="list-group-item"><a href="{{ route('tramite_alta') }}"><i
                             class="fas fa-plus-square"></i>Crear Trámite</a></li>
 
-                <!-- Concentración -->
-                <li class="list-group-item"><strong>Concentración</strong></li>
-                <li class="list-group-item"><a href="{{ route('concentracion_index') }}"><i
-                            class="fas fa-balance-scale"></i>Mostrar Concentración</a></li>
-                <li class="list-group-item"><a href="{{ route('concentracion_alta') }}"><i
-                            class="fas fa-plus-circle"></i>Crear Concentración</a></li>
 
                 <!-- Histórico -->
                 <li class="list-group-item"><strong>Histórico</strong></li>
