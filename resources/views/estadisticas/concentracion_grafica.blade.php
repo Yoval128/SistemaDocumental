@@ -40,8 +40,10 @@
             </div>
         </div>
         <!-- Aquí se renderiza el gráfico -->
-        <canvas id="graficoDocumentos" width="400" height="200"></canvas>
-
+        <div style="position: relative; width: 100%; height: 600px; max-height: 400px; overflow: hidden;">
+            <canvas id="graficoDocumentos" width="300" height="150"></canvas>
+        
+        </div>
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
         <script>
             var ctx = document.getElementById('graficoDocumentos').getContext('2d');

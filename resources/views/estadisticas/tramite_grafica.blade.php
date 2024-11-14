@@ -11,9 +11,12 @@
 
                 <div class="p-4 bg-light rounded-lg shadow-sm">
                     <h3 class="mb-3">Seguimiento de Documentos y Trámites</h3>
-                    <p class="lead">En esta sección podrás consultar el estado de tus documentos y trámites mediante gráficos. 
-                        Podrás visualizar el número de trámites y documentos clasificados según su estado (archivado, en revisión, pendiente). 
-                        Esta herramienta te permitirá monitorear el progreso de las tareas y priorizar aquellas que requieran atención inmediata.</p>
+                    <p class="lead">En esta sección podrás consultar el estado de tus documentos y trámites mediante
+                        gráficos.
+                        Podrás visualizar el número de trámites y documentos clasificados según su estado (archivado, en
+                        revisión, pendiente).
+                        Esta herramienta te permitirá monitorear el progreso de las tareas y priorizar aquellas que
+                        requieran atención inmediata.</p>
                 </div>
             </div>
         </div>
@@ -41,7 +44,9 @@
         <div class="row mb-4">
             <div class="col-12">
                 <h3 class="mb-4">Gráfico de Estado de Documentos</h3>
-                <canvas id="estadoGrafica" width="400" height="200"></canvas>
+                <div style="position: relative; width: 100%; height: 300px; max-height: 400px; overflow: hidden;">
+                    <canvas id="estadoGrafica" width="300" height="150"></canvas>
+                </div>
             </div>
         </div>
     </div>
@@ -79,20 +84,21 @@
                     label: 'Cantidad de Documentos', // Título de la serie de datos
                     data: datos, // Datos que corresponden a las cantidades de documentos
                     backgroundColor: colores, // Colores de fondo de las barras
-                    borderColor: colores.map(color => color.replace('0.6', '1')), // Bordes de las barras (más opacos)
+                    borderColor: colores.map(color => color.replace('0.6',
+                        '1')), // Bordes de las barras (más opacos)
                     borderWidth: 1 // Grosor del borde
                 }]
             },
             options: {
                 responsive: true,
-                maintainAspectRatio: false, // Asegura que el gráfico se ajuste bien
+                maintainAspectRatio: false, // Esto ya lo tienes, pero asegúrate de que esté como "false"
                 scales: {
                     y: {
-                        beginAtZero: true, // Empieza la escala Y desde cero
+                        beginAtZero: true,
                         ticks: {
-                            stepSize: 1, // Intervalo entre las marcas
+                            stepSize: 1,
                             font: {
-                                size: 14,
+                                size: 12,
                                 weight: 'bold'
                             }
                         }
@@ -100,7 +106,7 @@
                     x: {
                         ticks: {
                             font: {
-                                size: 14,
+                                size: 12,
                                 weight: 'bold'
                             }
                         }
@@ -108,10 +114,10 @@
                 },
                 plugins: {
                     legend: {
-                        position: 'top', // Ubicación de la leyenda
+                        position: 'top',
                         labels: {
                             font: {
-                                size: 16,
+                                size: 12,
                                 weight: 'bold'
                             }
                         }
@@ -125,6 +131,7 @@
                     }
                 }
             }
+
         });
     </script>
 @endsection

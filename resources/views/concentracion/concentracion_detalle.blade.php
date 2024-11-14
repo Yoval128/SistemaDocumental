@@ -35,7 +35,16 @@
                     <p>{{ $concentracion->subseccion }}</p>
                 </div>
             </div>
-
+            <div class="row mb-3">
+                <div class="col-md-4">
+                    <strong>Serie:</strong>
+                    <p>{{ $concentracion->serie }}</p>
+                </div>
+                <div class="col-md-4">
+                    <strong>Subserie:</strong>
+                    <p>{{ $concentracion->subserie }}</p>
+                </div>
+            </div>
             <div class="row mb-3">
                 <div class="col-md-4">
                     <strong>Año de Creación:</strong>
@@ -46,7 +55,39 @@
                     <p>{{ $concentracion->ano_cierre }}</p>
                 </div>
             </div>
+            <div class="row mb-3">
+                <div class="col-md-4">
+                    <strong>Motivo de cierre:</strong>
+                    <p>{{ $concentracion->motivo_cierre }}</p>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-md-4">
+                    <strong>Legajos:</strong>
+                    <p>{{ $concentracion->legajos }}</p>
+                </div>
+                <div class="col-md-4">
+                    <strong>Medida:</strong>
+                    <p>{{ $concentracion->medida }}</p>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-md-4">
+                    <strong>Ubicacion Fisica:</strong>
+                    <p>{{ $concentracion->ubicacion_fisica }}</p>
+                </div>
+                <div class="col-md-4">
+                    <strong>Digitalizado:</strong>
+                    <p>
+                        @if ($concentracion->digitalizado == 1)
+                            Sí
+                        @else
+                            No
+                        @endif
+                    </p>
+                </div>
 
+            </div>
             <div class="row mb-3">
                 <div class="col-md-12">
                     <strong>Documentos Adjuntos:</strong>
