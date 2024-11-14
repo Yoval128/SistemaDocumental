@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container mt-4">
-        <!-- Encabezado con Título y Descripción -->
+
         <div class="row mb-4">
             <div class="col-12">
                 <div class="bg-dark text-white p-4 rounded-lg">
@@ -40,7 +40,6 @@
             </div>
         </div>
 
-        <!-- Gráfico de Estado de Documentos -->
         <div class="row mb-4">
             <div class="col-12">
                 <h3 class="mb-4">Gráfico de Estado de Documentos</h3>
@@ -51,13 +50,10 @@
         </div>
     </div>
 
-    <!-- Script para la Gráfica -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
-        // Datos que se pasan desde el controlador (asumiendo que $tramitesPorEstado es un array de objetos o JSON)
         var tramitesPorEstado = @json($tramitesPorEstado);
 
-        // Generar las etiquetas (estados) y los datos (totales) desde la variable de PHP
         var etiquetas = tramitesPorEstado.map(function(tramite) {
             return tramite.estado;
         });
@@ -66,7 +62,6 @@
             return tramite.total;
         });
 
-        // Colores de las barras (puedes ajustar esto para que sea más dinámico)
         var colores = [
             'rgba(54, 162, 235, 0.6)', // Azul
             'rgba(255, 99, 132, 0.6)', // Rojo
@@ -74,24 +69,23 @@
             'rgba(153, 102, 255, 0.6)' // Morado
         ];
 
-        // Configuración del gráfico
         var ctx = document.getElementById('estadoGrafica').getContext('2d');
         var estadoGrafica = new Chart(ctx, {
-            type: 'bar', // Tipo de gráfico: barras
+            type: 'bar',
             data: {
-                labels: etiquetas, // Etiquetas de cada barra (los estados)
+                labels: etiquetas,
                 datasets: [{
-                    label: 'Cantidad de Documentos', // Título de la serie de datos
-                    data: datos, // Datos que corresponden a las cantidades de documentos
-                    backgroundColor: colores, // Colores de fondo de las barras
+                    label: 'Cantidad de Documentos',
+                    data: datos,
+                    backgroundColor: colores,
                     borderColor: colores.map(color => color.replace('0.6',
-                        '1')), // Bordes de las barras (más opacos)
-                    borderWidth: 1 // Grosor del borde
+                        '1')),
+                    borderWidth: 1
                 }]
             },
             options: {
                 responsive: true,
-                maintainAspectRatio: false, // Esto ya lo tienes, pero asegúrate de que esté como "false"
+                maintainAspectRatio: false,
                 scales: {
                     y: {
                         beginAtZero: true,

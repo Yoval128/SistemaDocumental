@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container mt-4">
-        <!-- Encabezado con Título y Descripción -->
+
         <div class="row mb-4">
             <div class="col-12">
                 <div style="background-color: black; padding: 20px;">
@@ -34,28 +34,28 @@
                                 <i class="fas fa-arrow-right" style="margin-right: 8px;"></i> Cuadro de Clacifición
                             </a>
                         </li>
-                        
+
                     </ul>
                 </nav>
             </div>
         </div>
-        <!-- Aquí se renderiza el gráfico -->
+
         <div style="position: relative; width: 100%; height: 600px; max-height: 400px; overflow: hidden;">
             <canvas id="graficoDocumentos" width="300" height="150"></canvas>
-        
+
         </div>
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
         <script>
             var ctx = document.getElementById('graficoDocumentos').getContext('2d');
             var myChart = new Chart(ctx, {
-                type: 'bar', // Tipo de gráfico: puede ser 'bar', 'line', 'pie', etc.
+                type: 'bar',
                 data: {
-                    labels: {!! json_encode($labels) !!}, // Etiquetas generadas desde el controlador
+                    labels: {!! json_encode($labels) !!},
                     datasets: [{
                         label: 'Cantidad de Documentos',
-                        data: {!! json_encode($data) !!}, // Datos generados desde el controlador
-                        backgroundColor: 'rgba(75, 192, 192, 0.2)', // Color de fondo de las barras
-                        borderColor: 'rgba(75, 192, 192, 1)', // Color del borde de las barras
+                        data: {!! json_encode($data) !!},
+                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                        borderColor: 'rgba(75, 192, 192, 1)',
                         borderWidth: 1
                     }]
                 },

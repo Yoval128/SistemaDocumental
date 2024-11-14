@@ -140,19 +140,17 @@ class ConcentracionController extends Controller
             }
         }
 
-        // Eliminar documentos seleccionados
         if ($request->input('documentos_a_eliminar')) {
             foreach ($request->input('documentos_a_eliminar') as $key) {
                 $filePath = public_path('pdfs/' . $documentos[$key]);
                 if (file_exists($filePath)) {
-                    unlink($filePath); // Eliminar el archivo físico
+                    unlink($filePath);
                 }
-                unset($documentos[$key]); // Eliminar de la lista de documentos
+                unset($documentos[$key]);
             }
-            $documentos = array_values($documentos); // Reindexar el array
+            $documentos = array_values($documentos);
         }
 
-        // Actualizar el registro
         $id->update([
             'clave' => $request->input('clave'),
             'nombre_expediente' => $request->input('nombre_expediente'),
@@ -184,9 +182,9 @@ class ConcentracionController extends Controller
 
     public function concentracion_exportar_pdf()
     {
-        $concentraciones = Concentracion::all();  // Obtener todas las concentraciones
+        $concentraciones = Concentracion::all();
         $pdf = \PDF::loadView('concentracion.pdf', compact('concentraciones'));
-        return $pdf->download('concentraciones.pdf');  // Descargar el archivo PDF generado
+        return $pdf->download('concentraciones.pdf');
     }
 
     public function concentracion_exportar_excel()
@@ -196,8 +194,8 @@ class ConcentracionController extends Controller
 
     public function mostrarGrafica(Request $request)
     {
-         $documentosPorClasificacion = Concentracion::selectRaw('fondo, seccion, subseccion, count(*) as total')
-            ->groupBy('fondo', 'seccion', 'subseccion')  // Agrupamos por fondo, sección y subsección
+        $documentosPorClasificacion = Concentracion::selectRaw('fondo, seccion, subseccion, count(*) as total')
+            ->groupBy('fondo', 'seccion', 'subseccion')
             ->get();
 
         $labels = [];
