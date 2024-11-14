@@ -114,3 +114,7 @@ Route::name('asignacion_areas_eliminar')->get('/asignacion_areas_eliminar/{id}',
 
 
 Route::get('/test-login', [UsuarioController::class, 'testLogin'])->middleware('auth');
+
+
+Route::name('estadistica_tramite')->get('/estadistica_tramite', [TramiteController::class, 'mostrarGrafica']);
+Route::name('estadistica_concentracion')->get('/estadistica_concentracion', [ConcentracionController::class, 'mostrarGrafica']);

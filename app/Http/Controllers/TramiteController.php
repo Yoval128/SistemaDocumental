@@ -197,4 +197,16 @@ class TramiteController extends Controller
     {
         return Excel::download(new RolExport, 'tramite.xlsx');
     }
+
+
+    public function mostrarGrafica()
+
+    {
+        // Obtener la cantidad de trámites por estado
+        $tramitesPorEstado = Tramite::selectRaw('estado, count(*) as total')
+            ->groupBy('estado')
+            ->get();
+
+        return view('estadisticas.tramite_grafica', compact('tramitesPorEstado'));
+    }
 }

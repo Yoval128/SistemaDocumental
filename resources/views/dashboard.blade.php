@@ -85,6 +85,18 @@
                 </a>
             </div>
 
+            <div class="menu-box">
+                <a href="{{ route('estadistica_tramite') }}">
+                    <div class="menu-icon">
+                        <img src="img/icon/asignar.png" alt="Mostrar grafica">
+                    </div>
+                    <div class="menu-title">
+                        <h2>Estadisticas</h2>
+                    </div>
+                </a>
+            </div>
+            
+
         </div>
     </div>
 

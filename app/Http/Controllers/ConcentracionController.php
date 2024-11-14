@@ -193,4 +193,20 @@ class ConcentracionController extends Controller
     {
         return Excel::download(new ConcentracionExport, 'concentraciones.xlsx');
     }
+
+    public function mostrarGrafica(Request $request)
+    {
+         $documentosPorClasificacion = Concentracion::selectRaw('fondo, seccion, subseccion, count(*) as total')
+            ->groupBy('fondo', 'seccion', 'subseccion')  // Agrupamos por fondo, sección y subsección
+            ->get();
+
+        $labels = [];
+        $data = [];
+        foreach ($documentosPorClasificacion as $doc) {
+            $labels[] = $doc->fondo . ' - ' . $doc->seccion . ' - ' . ($doc->subseccion ?? 'Sin subsección');
+            $data[] = $doc->total;
+        }
+
+        return view('estadisticas.concentracion_grafica', compact('labels', 'data'));
+    }
 }

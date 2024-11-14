@@ -332,4 +332,33 @@ body {
 }
 
 
-/* PAginacion */
+/* Nav EStadisticas */
+
+    /* Fondo negro para el nav */
+    nav {
+        background-color: black;
+        padding: 10px 20px;
+        border-radius: 8px;
+    }
+
+    /* Estilo para los enlaces del menú */
+    .nav a {
+        color: white; /* Color de texto blanco */
+        font-size: 18px; /* Tamaño de fuente */
+        font-weight: bold; /* Negrita */
+        padding: 10px 20px;
+        text-decoration: none;
+        border-radius: 5px;
+        transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    /* Efecto hover */
+    .nav a:hover {
+        background-color: #d4af37; /* Color dorado al pasar el mouse */
+        color: black; /* Cambio de color de texto a negro */
+    }
+
+    /* Estilo para los iconos */
+    .nav a i {
+        margin-right: 8px;
+    }
