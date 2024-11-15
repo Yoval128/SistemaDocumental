@@ -118,3 +118,4 @@ Route::get('/test-login', [UsuarioController::class, 'testLogin'])->middleware('
 
 Route::name('estadistica_tramite')->get('/estadistica_tramite', [TramiteController::class, 'mostrarGrafica']);
 Route::name('estadistica_concentracion')->get('/estadistica_concentracion', [ConcentracionController::class, 'mostrarGrafica']);
+Route::name('estadistica_usuarios')->get('/estadistica_usuarios', [ConcentracionController::class, 'mostrarGrafica']);

@@ -54,20 +54,39 @@ class UsuarioController extends Controller
 
     public function dashboard()
     {
-        $user = Auth::user(); // Obtener el usuario autenticado
-        return view('dashboard', ['user' => $user]); // Pasar el usuario a la vista
+        $user = Auth::user(); 
+        return view('dashboard', ['user' => $user]); 
     }
 
     public function logout()
     {
-        Auth::logout(); // Cierra la sesión del usuario
+        Auth::logout(); 
         return redirect()->route('login')->with('success', 'Has cerrado sesión.');
     }
 
     public function usuario_index(Request $request)
     {
         $usuario = Usuario::Buscar($request->buscar)->paginate(5);
-        return view('usuario.usuario_index')->with(['usuario' => $usuario]);
+
+        $usuariosTotales = Usuario::all();
+
+        $hombres = $usuariosTotales->where('sexo', 'Masculino')->count();
+        $mujeres = $usuariosTotales->where('sexo', 'Femenino')->count();
+
+        $usuariosActivos = $usuariosTotales->where('activo', 1)->count();
+        $usuariosInactivos = $usuariosTotales->where('activo', 0)->count();
+
+        $roles = $usuariosTotales->groupBy('rol')->map(function ($row) {
+            return $row->count();
+        });
+        return view('usuario.usuario_index', [
+            'usuario' => $usuario,
+            'usuariosActivos' => $usuariosActivos,
+            'usuariosInactivos' => $usuariosInactivos,
+            'hombres' => $hombres,
+            'mujeres' => $mujeres,
+            'roles' => $roles
+        ]);
     }
 
     public function usuario_alta()
