@@ -51,7 +51,6 @@ class TramiteController extends Controller
     }
 
 
-
     public function tramite_alta()
     {
         return view('tramite.tramite_alta')->with([

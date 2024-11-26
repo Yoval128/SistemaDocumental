@@ -7,10 +7,14 @@ use Illuminate\Support\Facades\Auth;
 
 use App\Models\Usuario;
 
-
 use Barryvdh\DomPDF\Facade as PDF;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\RolExport;
+
+use Illuminate\Support\Facades\Notification;
+use App\Notifications\VerificacionEmail;
+use Illuminate\Support\Str;
+
 
 class UsuarioController extends Controller
 {
@@ -51,16 +55,15 @@ class UsuarioController extends Controller
         }
     }
 
-
     public function dashboard()
     {
-        $user = Auth::user(); 
-        return view('dashboard', ['user' => $user]); 
+        $user = Auth::user();
+        return view('dashboard', ['user' => $user]);
     }
 
     public function logout()
     {
-        Auth::logout(); 
+        Auth::logout();
         return redirect()->route('login')->with('success', 'Has cerrado sesión.');
     }
 
@@ -94,6 +97,7 @@ class UsuarioController extends Controller
         return view('usuario.usuario_alta');
     }
 
+
     public function usuario_registrar(Request $request)
     {
         $this->validate($request, [
@@ -115,7 +119,8 @@ class UsuarioController extends Controller
             \Storage::disk('local')->put($img2, \File::get($file));
         }
 
-        Usuario::create([
+        // Crear el usuario
+        $usuario = Usuario::create([
             'nombre' => $request->input('nombre'),
             'apellidoP' => $request->input('apellidoP'),
             'apellidoM' => $request->input('apellidoM'),
@@ -128,9 +133,17 @@ class UsuarioController extends Controller
             'activo' => $request->input('activo') ? 1 : 0,
         ]);
 
-        return redirect()->route('usuario_index')->with('success', 'Usuario creado con éxito.');
-    }
+        // Generar un código de verificación
+        $token = Str::random(60); // Generar un token único
 
+        // Almacenar el token en la base de datos, podrías agregar un campo en la tabla `usuarios` para guardar este token
+        $usuario->update(['verification_token' => $token]);
+
+        // Enviar el código por correo electrónico
+        $usuario->notify(new VerificacionEmail($token));
+
+        return redirect()->route('usuario_index')->with('success', 'Usuario creado con éxito. Revisa tu correo para verificar tu cuenta.');
+    }
 
     public function usuario_eliminar(Usuario $id)
     {
@@ -206,5 +219,20 @@ class UsuarioController extends Controller
     public function usuario_exportar_excel()
     {
         return Excel::download(new RolExport, 'tramite.xlsx');
+    }
+
+    public function verificarCodigo($token)
+    {
+        $usuario = Usuario::where('verification_token', $token)->first();
+
+        if ($usuario) {
+            $usuario->email_verified_at = now();
+            $usuario->verification_token = null; // Limpiar el token
+            $usuario->save();
+
+            return redirect()->route('usuario_index')->with('success', 'Cuenta verificada exitosamente.');
+        }
+
+        return redirect()->route('usuario_index')->with('error', 'Código de verificación inválido.');
     }
 }

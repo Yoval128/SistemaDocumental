@@ -4,9 +4,22 @@
     <h3>Nuevo Usuario</h3>
     <hr>
 
+    @if(session('success'))
+        <div class="alert alert-success">
+            {{ session('success') }}
+        </div>
+    @endif
+
+    @if(session('error'))
+        <div class="alert alert-danger">
+            {{ session('error') }}
+        </div>
+    @endif
+
     <div class="card">
-            <form action="{{ route('usuario_registrar') }}" method="post" enctype="multipart/form-data">
-                {{ csrf_field() }}
+        <form action="{{ route('usuario_registrar') }}" method="post" enctype="multipart/form-data">
+            {{ csrf_field() }}
+            <!-- Aquí van los campos del formulario -->
             <div class="form-group">
                 <label for="nombre">Nombre:</label>
                 <input type="text" class="form-control" id="nombre" name="nombre" required>
@@ -63,8 +76,6 @@
             <button type="submit" class="btn btn-primary">Guardar</button>
           
             <a href="{{ route('usuario_index') }}" class="btn btn-secondary">Cancelar</a>
-       
-       
         </form>
     </div>
 @endsection

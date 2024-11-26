@@ -43,6 +43,8 @@ Route::name('usuario_detalle')->get('/usuario_detalle/{id}', [UsuarioController:
 Route::name('usuario_exportar_pdf')->get('/usuario_exportar_pdf', [UsuarioController::class, 'usuario_exportar_pdf']);
 Route::name('usuario_exportar_excel')->get('/usuario_exportar_excel', [UsuarioController::class, 'usuario_exportar_excel']);
 
+Route::get('/verificar-codigo/{token}', [UsuarioController::class, 'verificarCodigo'])->name('verificar_codigo');
+
 
 Route::name('areas_index')->get('/areas_index', [AreaController::class, 'areas_index']);
 Route::name('areas_alta')->get('/areas_alta', [AreaController::class, 'areas_alta']);

@@ -81,7 +81,8 @@
 
                                         <td>{{ $key + 1 }}</td>
                                         <td>{{ $tramite->id_tramite }}</td>
-                                        <td>{{ $tramite->area->nombre }}</td>
+                                        <td>{{ $tramite->area?->nombre ?? 'Sin asignar' }}</td>
+
                                         <td>{{ $tramite->usuario->nombre }} {{ $tramite->usuario->apellidoP }}
                                             {{ $tramite->usuario->apellidoM }}</td>
                                         <td>{{ \Carbon\Carbon::parse($tramite->fecha_inicio)->format('m/d/y') }}</td>

@@ -23,6 +23,8 @@ return new class extends Migration
             $table->string('rol');
             $table->string('foto');
             $table->boolean('activo');
+            $table->string('verification_token')->nullable(); // Token de verificación
+            $table->timestamp('email_verified_at')->nullable(); // Fecha de verificación
             $table->timestamps();
         });
     }
