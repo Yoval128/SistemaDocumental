@@ -44,6 +44,9 @@ Route::name('usuario_exportar_pdf')->get('/usuario_exportar_pdf', [UsuarioContro
 Route::name('usuario_exportar_excel')->get('/usuario_exportar_excel', [UsuarioController::class, 'usuario_exportar_excel']);
 
 Route::get('/verificar-codigo/{token}', [UsuarioController::class, 'verificarCodigo'])->name('verificar_codigo');
+Route::get('/espera-verificacion', [UsuarioController::class, 'esperaVerificacion'])->name('espera_verificacion');
+// Ruta para la espera de verificación
+Route::get('/espera-verificacion', function() { return view('espera_verificacion');})->name('espera_verificacion');
 
 
 Route::name('areas_index')->get('/areas_index', [AreaController::class, 'areas_index']);

@@ -83,7 +83,7 @@
                                         <td>{{ $tramite->id_tramite }}</td>
                                         <td>{{ $tramite->area?->nombre ?? 'Sin asignar' }}</td>
 
-                                        <td>{{ $tramite->usuario->nombre }} {{ $tramite->usuario->apellidoP }}
+                                        <td>{{ $tramite->usuario->nombre  }} {{ $tramite->usuario->apellidoP }}
                                             {{ $tramite->usuario->apellidoM }}</td>
                                         <td>{{ \Carbon\Carbon::parse($tramite->fecha_inicio)->format('m/d/y') }}</td>
                                         <td>{{ \Carbon\Carbon::parse($tramite->fecha_limite)->format('m/d/y') }}</td>

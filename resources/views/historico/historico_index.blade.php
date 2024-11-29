@@ -59,8 +59,9 @@
                                         <tr>
                                             <td>{{ $historicos->firstItem() + $key }}</td>
                                             <td>{{ $historico->id_historico }}</td>
-                                            <td>{{ $historico->usuario->nombre }} {{ $historico->usuario->apellidoP }}
-                                                {{ $historico->usuario->apellidoM }}</td>
+                                            <td>{{ $historico->usuario->nombre ?? 'Sin asignar' }}
+                                                {{ $historico->usuario->apellidoP ?? 'Sin asignar' }}
+                                                {{ $historico->usuario->apellidoM ?? 'Sin asignar' }}</td>
                                             <td>
                                                 @if ($historico->tramite)
                                                     {{ $historico->tramite->estado }}
