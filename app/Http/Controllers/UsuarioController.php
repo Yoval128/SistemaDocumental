@@ -11,6 +11,8 @@ use Barryvdh\DomPDF\Facade as PDF;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\RolExport;
 
+use App\Exports\UsuarioExport;
+
 use Illuminate\Support\Facades\Notification;
 use App\Notifications\VerificacionEmail;
 use Illuminate\Support\Str;
@@ -43,8 +45,8 @@ class UsuarioController extends Controller
 
     public function testLogin(Request $request)
     {
-        $email = 'admin@hotmail.com'; // Email del usuario
-        $password = '12345'; //contraseña real
+        $email = 'jose.martinez@ayuntamiento.com.mx'; // Email del usuario
+        $password = 'admin123'; //contraseña real
 
         $user = Usuario::where('email', $email)->first();
 
@@ -111,14 +113,14 @@ class UsuarioController extends Controller
             'rol' => 'required',
             'activo' => 'nullable|boolean',
         ]);
-    
+
         $img2 = "foto_default.jpg";
         if ($request->file('foto')) {
             $file = $request->file('foto');
             $img2 = time() . '_' . $file->getClientOriginalName();
             \Storage::disk('local')->put($img2, \File::get($file));
         }
-    
+
         // Crear el usuario
         $usuario = Usuario::create([
             'nombre' => $request->input('nombre'),
@@ -132,20 +134,20 @@ class UsuarioController extends Controller
             'foto' => $img2,
             'activo' => $request->input('activo') ? 1 : 0,
         ]);
-    
+
         // Generar un código de verificación
         $token = Str::random(60); // Generar un token único
-    
+
         // Almacenar el token en la base de datos, podrías agregar un campo en la tabla `usuarios` para guardar este token
         $usuario->update(['verification_token' => $token]);
-    
+
         // Enviar el código por correo electrónico
         $usuario->notify(new VerificacionEmail($token));
-    
+
         // Redirigir a la página de espera de verificación
         return redirect()->route('espera_verificacion')->with('success', 'Usuario creado con éxito. Revisa tu correo para verificar tu cuenta.');
     }
-    
+
 
     public function verificarCodigo($token)
     {
@@ -241,6 +243,6 @@ class UsuarioController extends Controller
 
     public function usuario_exportar_excel()
     {
-        return Excel::download(new RolExport, 'tramite.xlsx');
+        return Excel::download(new UsuarioExport, 'tramite.xlsx');
     }
 }

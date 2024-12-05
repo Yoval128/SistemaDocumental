@@ -29,11 +29,11 @@ Route::get('/', function () {
 Route::name('login')->get('/login', [UsuarioController::class, 'login']);
 Route::name('login_post')->post('/login_post', [UsuarioController::class, 'login_post']);
 Route::name('logout')->post('/logout', [UsuarioController::class, 'logout'])->middleware('auth');
-//Route::name('dashboard')->get('/dashboard', [UsuarioController::class, 'dashboard'])->middleware('auth');
+Route::name('dashboard')->get('/dashboard', [UsuarioController::class, 'dashboard'])->middleware('auth');
 Route::name('dashboard')->get('/dashboard', [UsuarioController::class, 'dashboard'])->middleware('auth');
 
 
-Route::name('usuario_index')->get('/usuarios', [UsuarioController::class, 'usuario_index']);
+//Route::name('usuario_index')->get('/usuarios', [UsuarioController::class, 'usuario_index']);
 Route::name('usuario_alta')->get('/usuario_alta', [UsuarioController::class, 'usuario_alta']);
 Route::name('usuario_registrar')->post('/usuario_registrar', [UsuarioController::class, 'usuario_registrar']);
 Route::name('usuario_modificar')->get('/usuario_modificar/{id}', [UsuarioController::class, 'usuario_modificar'])->middleware('auth');
@@ -46,7 +46,9 @@ Route::name('usuario_exportar_excel')->get('/usuario_exportar_excel', [UsuarioCo
 Route::get('/verificar-codigo/{token}', [UsuarioController::class, 'verificarCodigo'])->name('verificar_codigo');
 Route::get('/espera-verificacion', [UsuarioController::class, 'esperaVerificacion'])->name('espera_verificacion');
 // Ruta para la espera de verificación
-Route::get('/espera-verificacion', function() { return view('espera_verificacion');})->name('espera_verificacion');
+Route::get('/espera-verificacion', function () {
+    return view('espera_verificacion');
+})->name('espera_verificacion');
 
 
 Route::name('areas_index')->get('/areas_index', [AreaController::class, 'areas_index']);
@@ -79,7 +81,7 @@ Route::name('usuario_area_rol_detalle')->get('/usuario_area_rol_detalle/{id}', [
 Route::name('usuario_area_rol_exportar_pdf')->get('/usuario_area_rol_exportar_pdf', [UsuarioAreaRolController::class, 'usuario_area_rol_exportar_pdf']);
 Route::name('usuario_area_rol_exportar_excel')->get('/usuario_area_rol_exportar_excel', [UsuarioAreaRolController::class, 'usuario_area_rol_exportar_excel']);
 
-Route::name('tramite_index')->get('/tramites', [TramiteController::class, 'tramite_index'])->middleware('auth');
+//Route::name('tramite_index')->get('/tramites', [TramiteController::class, 'tramite_index'])->middleware('auth');
 Route::name('tramite_alta')->get('/tramite_alta', [TramiteController::class, 'tramite_alta'])->middleware('auth');
 Route::name('tramite_registrar')->post('/tramite_registrar', [TramiteController::class, 'tramite_registrar'])->middleware('auth');
 Route::name('tramite_modificar')->get('/tramite_modificar/{id}', [TramiteController::class, 'tramite_modificar'])->middleware('auth');
@@ -124,3 +126,26 @@ Route::get('/test-login', [UsuarioController::class, 'testLogin'])->middleware('
 Route::name('estadistica_tramite')->get('/estadistica_tramite', [TramiteController::class, 'mostrarGrafica']);
 Route::name('estadistica_concentracion')->get('/estadistica_concentracion', [ConcentracionController::class, 'mostrarGrafica']);
 Route::name('estadistica_usuarios')->get('/estadistica_usuarios', [ConcentracionController::class, 'mostrarGrafica']);
+
+
+
+// Rutas para 'Jefe de archivo general' (acceso total)
+Route::name('usuario_index')->get('/usuarios', [UsuarioController::class, 'usuario_index'])
+    ->middleware(['auth', 'role:Jefe de archivo general']);  // Solo Jefe de archivo general
+
+Route::name('areas_index')->get('/areas_index', [AreaController::class, 'areas_index'])
+    ->middleware(['auth', 'role:Jefe de archivo general']);  // Solo Jefe de archivo general
+
+Route::name('concentracion_index')->get('/concentracion', [ConcentracionController::class, 'concentracion_index'])
+    ->middleware(['auth', 'role:Jefe de archivo general']);  // Solo Jefe de archivo general
+
+Route::name('historico_index')->get('/historico', [HistoricoController::class, 'historico_index'])
+    ->middleware(['auth', 'role:Jefe de archivo general']);  // Solo Jefe de archivo general
+
+// Rutas para 'Empleado de Trámite' (solo acceso a trámites)
+Route::name('tramite_index')->get('/tramites', [TramiteController::class, 'tramite_index'])
+    ->middleware(['auth', 'role:Empleado de Trámite']);  // Solo Empleado de Trámite
+
+// Ruta de estadística que es accesible para ambos
+Route::name('estadistica_tramite')->get('/estadistica_tramite', [TramiteController::class, 'mostrarGrafica'])
+    ->middleware('auth');

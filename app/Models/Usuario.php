@@ -50,5 +50,14 @@ class Usuario extends Authenticatable
             $query->where('nombre', $nombre);
         }
     }
-
+    public function isJefeDeArchivo()
+    {
+        return $this->rol === 'Jefe de archivo general';
+    }
+    
+    public function isEmpleadoDeTramite()
+    {
+        return $this->rol === 'Empleado de Trámite';
+    }
+    
 }

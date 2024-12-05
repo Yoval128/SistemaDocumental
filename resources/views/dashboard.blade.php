@@ -7,83 +7,135 @@
 
     <div class="description-box">
         <div class="menu-container">
-            <div class="menu-box">
-                <a href="{{ route('usuario_index') }}">
-                    <div class="menu-icon">
-                        <img src="{{ asset('img/icon/user.png') }}" alt="Usuarios">
-                    </div>
-                    <div class="menu-title">
-                        <h2>Gestion de usuarios</h2>
-                    </div>
+            @if (Auth::user()->rol == 'Jefe de archivo general')
+                <div class="menu-box">
+                    <a href="{{ route('usuario_index') }}">
+                        <div class="menu-icon">
+                            <img src="{{ asset('img/icon/user.png') }}" alt="Usuarios">
+                        </div>
+                        <div class="menu-title">
+                            <h2>Gestion de usuarios</h2>
+                        </div>
 
-                </a>
-            </div>
+                    </a>
+                </div>
 
-            <div class="menu-box">
-                <a href="{{ route('concentracion_index') }}">
-                    <div class="menu-icon">
-                        <img src="img/icon/concentracion.png" alt="Concentración">
-                    </div>
-                    <div class="menu-title">
-                        <h2>Cuadro de Clasificación</h2>
-                    </div>
-                </a>
-            </div>
+                <div class="menu-box">
+                    <a href="{{ route('concentracion_index') }}">
+                        <div class="menu-icon">
+                            <img src="img/icon/concentracion.png" alt="Concentración">
+                        </div>
+                        <div class="menu-title">
+                            <h2>Cuadro de Clasificación</h2>
+                        </div>
+                    </a>
+                </div>
 
-            <div class="menu-box">
-                <a href="{{ route('tramite_index') }}">
-                    <div class="menu-icon">
-                        <img src="{{ asset('img/icon/tramite.png') }}" alt="Trámites">
+                <div class="menu-box">
+                    <a href="{{ route('tramite_index') }}">
+                        <div class="menu-icon">
+                            <img src="{{ asset('img/icon/tramite.png') }}" alt="Trámites">
 
-                    </div>
-                    <div class="menu-title">
-                        <h2>Trámites disponibles</h2>
-                    </div>
-                </a>
-            </div>
+                        </div>
+                        <div class="menu-title">
+                            <h2>Trámites disponibles</h2>
+                        </div>
+                    </a>
+                </div>
 
-            <div class="menu-box">
-                <a href="{{ route('historico_index') }}">
-                    <div class="menu-icon">
-                        <img src="img/icon/historico.png" alt="Histórico">
-                    </div>
-                    <div class="menu-title">
-                        <h2>Consultar histórico</h2>
-                    </div>
-                </a>
-            </div>
+                <div class="menu-box">
+                    <a href="{{ route('historico_index') }}">
+                        <div class="menu-icon">
+                            <img src="img/icon/historico.png" alt="Histórico">
+                        </div>
+                        <div class="menu-title">
+                            <h2>Consultar histórico</h2>
+                        </div>
+                    </a>
+                </div>
 
-            <div class="menu-box">
-                <a href="{{ route('areas_index') }}">
-                    <div class="menu-icon">
-                        <img src="img/icon/area.png" alt="Asigancion Area">
-                    </div>
-                    <div class="menu-title">
-                        <h2>Áreas asignadas</h2>
-                    </div>
-                </a>
-            </div>
+                <div class="menu-box">
+                    <a href="{{ route('areas_index') }}">
+                        <div class="menu-icon">
+                            <img src="img/icon/area.png" alt="Asigancion Area">
+                        </div>
+                        <div class="menu-title">
+                            <h2>Áreas asignadas</h2>
+                        </div>
+                    </a>
+                </div>
 
-            <div class="menu-box">
-                <a href="{{ route('rol_index') }}">
-                    <div class="menu-icon">
-                        <img src="img/icon/rol.png" alt="Roles">
-                    </div>
-                    <div class="menu-title">
-                        <h2>Configuración de roles</h2>
-                    </div>
-                </a>
-            </div>
-            <div class="menu-box">
-                <a href="{{ route('usuario_area_rol_index') }}">
-                    <div class="menu-icon">
-                        <img src="img/icon/asignar.png" alt="Asignar roles y áreas">
-                    </div>
-                    <div class="menu-title">
-                        <h2>Asignar roles y áreas</h2>
-                    </div>
-                </a>
-            </div>
+                <div class="menu-box">
+                    <a href="{{ route('rol_index') }}">
+                        <div class="menu-icon">
+                            <img src="img/icon/rol.png" alt="Roles">
+                        </div>
+                        <div class="menu-title">
+                            <h2>Configuración de roles</h2>
+                        </div>
+                    </a>
+                </div>
+                <div class="menu-box">
+                    <a href="{{ route('usuario_area_rol_index') }}">
+                        <div class="menu-icon">
+                            <img src="img/icon/asignar.png" alt="Asignar roles y áreas">
+                        </div>
+                        <div class="menu-title">
+                            <h2>Asignar roles y áreas</h2>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="menu-box">
+                    <a href="{{ route('estadistica_tramite') }}">
+                        <div class="menu-icon">
+                            <img src="img/icon/asignar.png" alt="Mostrar grafica">
+                        </div>
+                        <div class="menu-title">
+                            <h2>Estadisticas</h2>
+                        </div>
+                    </a>
+                </div>
+            @endif
+
+            {{-- Menu para Roles --}}
+            @if (Auth::user()->rol == 'Empleado de Concentración')
+                <div class="menu-box">
+                    <a href="{{ route('concentracion_index') }}">
+                        <div class="menu-icon">
+                            <img src="img/icon/concentracion.png" alt="Concentración">
+                        </div>
+                        <div class="menu-title">
+                            <h2>Cuadro de Clasificación</h2>
+                        </div>
+                    </a>
+                </div>
+            @endif
+            @if (Auth::user()->rol == 'Empleado de trámite')
+                <div class="menu-box">
+                    <a href="{{ route('tramite_index') }}">
+                        <div class="menu-icon">
+                            <img src="{{ asset('img/icon/tramite.png') }}" alt="Trámites">
+
+                        </div>
+                        <div class="menu-title">
+                            <h2>Trámites disponibles</h2>
+                        </div>
+                    </a>
+                </div>
+            @endif
+            @if (Auth::user()->rol == 'Empleado de Histórico')
+                <div class="menu-box">
+                    <a href="{{ route('historico_index') }}">
+                        <div class="menu-icon">
+                            <img src="img/icon/historico.png" alt="Histórico">
+                        </div>
+                        <div class="menu-title">
+                            <h2>Consultar histórico</h2>
+                        </div>
+                    </a>
+                </div>
+            @endif
 
             <div class="menu-box">
                 <a href="{{ route('estadistica_tramite') }}">
@@ -95,8 +147,6 @@
                     </div>
                 </a>
             </div>
-            
-
         </div>
     </div>
 
